@@ -1,6 +1,10 @@
 @if (Auth::check())
     {{-- ユーザ一覧ページへのリンク --}}
-    <li><a class="link link-hover" href="{{ route('users.index') }}">Users</a></li>
+    <li><a class="link link-hover" href="{{ route('users.followings', $user->id) }}" "{{ Request::routeIs('users.followings') ? 'tab-active' : '' }}">
+        Friends
+        <div class="badge ml-1">{{ $user->followings_count }}</div>
+    </a>
+    </li>
     {{-- ユーザ詳細ページへのリンク --}}
     <li><a class="link link-hover" href="{{ route('users.show', Auth::user()->id) }}">Me</a></li>
     <li class="divider lg:hidden"></li>

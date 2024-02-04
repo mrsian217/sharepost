@@ -37,7 +37,9 @@
                     @endif
         </div>
         <div class="sm:w-1/2 mt-4">
-        {{-- 投稿一覧 --}}
+            {{-- タブ --}}  
+            @include('users.navtabs')
+            {{-- 投稿一覧 --}}
             @include('shareposts.shareposts')
         </div>
     </div>
