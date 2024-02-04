@@ -1,5 +1,5 @@
 <header class="mb-4">
-    <nav class="navbar bg-neutral text-neutral-content">
+    <nav class="navbar bg-blue-300 text-black">
         {{-- トップページへのリンク --}}
         <div class="flex-1">
             <h1><a class="btn btn-ghost normal-case text-xl" href="/">Share:Me</a></h1>
