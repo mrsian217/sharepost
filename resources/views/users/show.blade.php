@@ -8,7 +8,6 @@
             @if (isset($profire) && auth()->user()->id === $profire->user_id)
                 <div class="ml-24 mt-0">
                         <a class="btn btn-secondary mt-0 w-24 ml-36 text-black" href="{{ route('profires.edit', ['profire' => $profire->id]) }}">update</a>
-                    </div>
                 </div>
              @elseif (!isset($profire) && Auth::check() && Auth::id() === $user->id)
                 <form action="{{ route('profires.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col">
@@ -32,7 +31,7 @@
                 </div>
             @endif
         </div>
-        <div class="sm:w-1/2 mt-4">
+        <div class="sm:w-1/2 mt-2">
             {{-- タブ --}}  
             @include('users.navtabs')
             {{-- 投稿一覧 --}}
