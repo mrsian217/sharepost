@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profire extends Model
 {
-    use HasFactory;
-    
-    protected $fillable = ['user_id','content'];
+    protected $fillable = ['user_id','content', 'other_profile_fields'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

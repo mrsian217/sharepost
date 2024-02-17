@@ -1,7 +1,7 @@
 @if (isset($shareposts))
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4 ">
         @foreach ($shareposts as $sharepost)
-            <div class="flex flex-col items-start mb-8 border-b pb-4 border-l border-r px-2 border-gray-300 sm:w-full md:w-full"">
+            <div class="flex flex-col items-start mb-8 border-b border-t pb-4 border-l border-r px-2 py-2 border-gray-300 sm:w-full md:w-full drop-shadow rounded">
                 {{-- ユーザー情報（アバター画像とユーザー名） --}}
                 <div class="flex items-center mb-2">
                     <div class="w-8 h-8 rounded-full overflow-hidden">
@@ -22,18 +22,21 @@
                     <p class="text-sm">{{ $sharepost->comment }}</p>
                 </div>
                     {{-- 投稿日時 --}}
-                    <div class="flex items-center mt-2">
-                        <span class="text-muted text-gray-500 mt-2 text-center">{{ $sharepost->created_at }}</span>
+                    <div class="flex items-center mt-6">
+                        <span class="text-muted text-gray-500 mt-2 text-center text-xs">{{ $sharepost->created_at }}</span>
                         @if (Auth::id() == $sharepost->user_id)
                                 {{-- 投稿削除ボタンのフォーム --}}
                             <form method="POST" action="{{ route('shareposts.destroy', $sharepost->id) }}">
                             @csrf
                             @method('DELETE')
                                     
-                            <button type="submit" class="btn btn-disabled btn-sm normal-case ml-24 " 
+                            <button type="submit" class="btn btn-outline btn-sm normal-case ml-24 mt-4 " 
                                 onclick="return confirm('Delete id = {{ $sharepost->id }} ?')">Delete</button>
-                        </form>
-                    @endif
+                            </form>
+                        @endif
+                        @if (Auth::check())
+                            @include('favorite.good_button', ['sharepost' => $sharepost])
+                        @endif
                 </div>
                 </div>           
         @endforeach

@@ -36,21 +36,21 @@ class ProfiresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-         $request->validate([
-             'content' => 'required|max:255'
-             ]);
-            
-            $userId = Auth::id();
-            
-            $newProfire = Profire::create([
-            'user_id' => $userId,
-            'content' => $request->input('content'),
-        ]);
-        $user = User::findOrFail($userId);
-        return redirect()->route('users.show', ['newProfire' => $newProfire, 'user' => $user]);
-    }
+{
+    $request->validate([
+        'content' => 'required|max:255'
+    ]);
 
+    $userId = Auth::id();
+
+    $newProfire = Profire::create([
+        'user_id' => $userId,
+        'content' => $request->input('content'),
+    ]);
+
+    $user = User::findOrFail($userId);
+    return redirect()->route('users.show', ['user' => $user->id]);
+}
    
     
     public function __construct()
@@ -62,10 +62,6 @@ class ProfiresController extends Controller
     public function edit($id)
     {
         $profire = Profire::findOrFail($id);
-        
-         if (!$profire) {
-        $profire = new Profire();
-    }
 
     // 編集ビューを表示
     $data = [
@@ -73,7 +69,7 @@ class ProfiresController extends Controller
         'user' => Auth::user(),
     ];
 
-    return view('profires.form', $data);
+    return view('profires.edit', $data);
     }
 
     /**
@@ -96,7 +92,7 @@ class ProfiresController extends Controller
             'content' => $request->input('content'),
         ]);
 
-        return redirect()->route('users.show', ['id' => $profire->id]);
+        return redirect()->route('users.show', ['user' => $profire->user_id]);
     }
 
     /**

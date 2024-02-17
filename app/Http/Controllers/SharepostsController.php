@@ -16,7 +16,7 @@ class SharepostsController extends Controller
             $user = \Auth::user();
             // ユーザの投稿の一覧を作成日時の降順で取得
             // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
-            $shareposts = $user->shareposts()->orderBy('created_at', 'desc')->paginate(6);
+            $shareposts = $user->feed_shareposts()->orderBy('created_at', 'desc')->paginate(6);
             $data = [
                 'user' => $user,
                 'shareposts' => $shareposts,
@@ -59,7 +59,7 @@ class SharepostsController extends Controller
         $sharepost->update(['img_path' => $path]);
     }
 
-    return view('dashboard');
+    return redirect('dashboard');
     }
         
      public function destroy($id)

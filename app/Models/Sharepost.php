@@ -22,4 +22,9 @@ class Sharepost extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function good_users()
+    {
+        return $this->belongsToMany(User::class, 'goods', 'sharepost_id', 'user_id')->withTimestamps();
+    }
 }

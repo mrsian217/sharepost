@@ -6,6 +6,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SharepostsController; 
 use App\Http\Controllers\ProfiresController; 
 use App\Http\Controllers\UserFollowController;
+use App\Http\Controllers\NewGoodsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +37,12 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::resource('users', UsersController::class, ['only' => ['index', 'show']]);
     Route::resource('shareposts', SharepostsController::class, ['only' => ['create','store', 'destroy']]);
-    Route::resource('profires', ProfiresController::class, ['only' => ['create','store', 'edit','update']]);
+    Route::resource('profires', ProfiresController::class, ['only' => ['show','store', 'edit','update']]);
+    Route::post('profires/{id}', [ProfiresController::class, 'update']);
+    
+    Route::group(['prefix' => 'shareposts/{id}'], function () {                                             // 追加
+        Route::post('goods', [NewGoodsController::class, 'store'])->name('goods.good');        // 追加
+        Route::delete('ungoods', [NewGoodsController::class, 'destroy'])->name('goods.ungood');
+    });
+
 });

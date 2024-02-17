@@ -7,13 +7,13 @@
         <form action="{{ route('shareposts.store') }}" method="POST" enctype="multipart/form-data" class="flex">
             @csrf
             <div class="mr-12">
-                <h3>The best photo of the day↓↓↓</h3>
+                <h3 class="mb-4">The best photo of the day↓↓↓</h3>
                 <div class="relative">
-                    <input type="file" name="img_path" id="img_path" class="hidden" onchange="displayFileName(this)">
-                    <button type="button" class="bg-gray-300 w-72 h-72 cursor-pointer flex items-center justify-center border border-gray-400 rounded" onclick="document.getElementById('img_path').click()">
+                    <input type="file" name="img_path" id="img_path" class="hidden" onchange="displayImagePreview(this)(this)">
+                    <button type="button" class="bg-gray-100 w-80 h-12 cursor-pointer flex items-center justify-center border border-gray-400 rounded" onclick="document.getElementById('img_path').click()">
                         <span class="text-gray-600 text-sm">画像を選択</span>
                     </button>
-                    <img id="imagePreview" class="hidden mt-4" style="max-width: 100%;" alt="Selected Image Preview">
+                    <img id="imagePreview" class="hidden mt-4" style="max-width: 320px;" alt="Selected Image Preview">
                 </div>
             </div>
 

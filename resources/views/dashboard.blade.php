@@ -6,7 +6,7 @@
             <div class="sm:w-1/2 mt-4">
             {{-- ユーザ情報 --}}
                @include('users.card')
-               <a class="mt-16 w-64 ml-24 btn btn-warning" href="{{ route('shareposts.create') }}">Let's share today!</a>
+               <a class="mt-0 w-64 ml-24 btn btn-warning" href="{{ route('shareposts.create') }}">Let's share today!</a>
             </div>
             <div class="sm:w-1/2 mt-4">
             {{-- 投稿一覧 --}}
