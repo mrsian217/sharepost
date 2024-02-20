@@ -13,7 +13,7 @@
 　　　　　　　　
                 {{-- 画像の表示 --}}
                 @if($sharepost->img_path)
-                    <img src="{{ Storage::url($sharepost->img_path) }}" class="w-full h-full object-cover object-center mb-2">
+                    <img src="/storage/app/public{{ Storage::url($sharepost->img_path) }}" class="w-full h-full object-cover object-center mb-2">
                 @endif
 
                 {{-- タイトルと文章 --}}
